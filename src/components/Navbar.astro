@@ -1,0 +1,76 @@
+---
+import LanguageSelector from './LanguageSelector.astro';
+import { astroI18n,t } from 'astro-i18n';
+
+---
+
+<nav class="fixed w-full z-50 bg-gradient-to-b from-primary-900/80 to-transparent backdrop-blur-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center">
+          <span class="font-serif text-2xl font-bold text-white">Sweet Artistry</span>
+        </a>
+      </div>
+      
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-center space-x-8">
+          <a href="/" class="text-white hover:text-primary-200 px-2 py-1 text-sm font-medium transition-colors duration-200 relative group">
+            {t('nav.home')}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="/about" class="text-white hover:text-primary-200 px-2 py-1 text-sm font-medium transition-colors duration-200 relative group">
+            {t('nav.about')}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="/gallery" class="text-white hover:text-primary-200 px-2 py-1 text-sm font-medium transition-colors duration-200 relative group">
+            {t('nav.gallery')}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="/services" class="text-white hover:text-primary-200 px-2 py-1 text-sm font-medium transition-colors duration-200 relative group">
+            {t('nav.services')}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="/contact" class="text-white hover:text-primary-200 px-2 py-1 text-sm font-medium transition-colors duration-200 relative group">
+            {t('nav.contact')}
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <LanguageSelector />
+        
+        <div class="md:hidden">
+          <button id="mobile-menu-button" type="button" class="text-white hover:text-primary-200">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-primary-900/95 backdrop-blur-md">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="/" class="text-white block px-3 py-2 rounded-md text-base font-medium">{t('nav.home')}</a>
+      <a href="/about" class="text-white block px-3 py-2 rounded-md text-base font-medium">{t('nav.about')}</a>
+      <a href="/gallery" class="text-white block px-3 py-2 rounded-md text-base font-medium">{t('nav.gallery')}</a>
+      <a href="/services" class="text-white block px-3 py-2 rounded-md text-base font-medium">{t('nav.services')}</a>
+      <a href="/contact" class="text-white block px-3 py-2 rounded-md text-base font-medium">{t('nav.contact')}</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

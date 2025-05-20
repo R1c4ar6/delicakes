@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "title": "Artisan Cake Creations",
+    "subtitle": "Turning Sweet Dreams into Delicious Reality",
+    "description": "Every cake tells a story. Let me help you tell yours with handcrafted, custom cakes made with love and attention to every detail.",
+    "cta": "Book a Consultation",
+    "exploreCakes": "Explore Cakes",
+    "years": "Years of Experience",
+    "satisfied": "Satisfied Customers",
+    "varieties": "Cake Varieties"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "gallery": "Gallery",
+    "services": "Services",
+    "contact": "Contact"
+  }
+}

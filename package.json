@@ -1,14 +1,22 @@
 {
-  "name": "onedrive-documentos-self-study-delicakes",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^5.7.13"
-  }
+	"name": "onedrive-documentos-self-study-delicakes",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"i18n:extract": "astro-i18n extract",
+		"i18n:generate:pages": "astro-i18n generate:pages --purge",
+		"i18n:generate:types": "astro-i18n generate:types",
+		"i18n:sync": "npm run i18n:generate:pages && npm run i18n:generate:types"
+	},
+	"dependencies": {
+		"@astrojs/sitemap": "^3.4.0",
+		"@tailwindcss/vite": "^4.1.7",
+		"astro": "^5.7.13",
+		"astro-i18n": "^2.2.4",
+		"tailwindcss": "^4.1.7"
+	}
 }

@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "title": "Creaciones Artesanales de Pasteles",
+    "subtitle": "Convirtiendo Dulces Sueños en Deliciosa Realidad",
+    "description": "Cada pastel cuenta una historia. Permíteme ayudarte a contar la tuya con pasteles personalizados y artesanales hechos con amor y atención a cada detalle.",
+    "cta": "Reservar una Consulta",
+    "exploreCakes": "Explorar Pasteles",
+    "years": "Años de Experiencia",
+    "satisfied": "Clientes Satisfechos",
+    "varieties": "Variedades de Pasteles"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "gallery": "Galería",
+    "services": "Servicios",
+    "contact": "Contacto"
+  }
+}
