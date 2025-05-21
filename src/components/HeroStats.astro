@@ -1,5 +1,8 @@
 ---
-import { t } from 'astro-i18n';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="grid grid-cols-3 gap-4 py-8 mt-8 border-t border-white/10">

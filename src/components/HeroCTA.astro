@@ -1,5 +1,8 @@
 ---
-import { t } from 'astro-i18n';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="flex flex-col sm:flex-row gap-4 mt-8">

@@ -1,8 +1,10 @@
 ---
-import { astroI18n, t } from 'astro-i18n';
 import HeroCTA from './HeroCTA.astro';
 import HeroStats from './HeroStats.astro';
-const currentLocale = astroI18n.locale;
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="relative min-h-screen flex items-center">

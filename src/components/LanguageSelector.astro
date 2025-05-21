@@ -1,51 +1,10 @@
 ---
-// import { getLocale } from 'astro-i18n';
-
-const currentLocale = Astro.currentLocale || 'en';
-const otherLocale = currentLocale === 'en' ? 'es' : 'en';
-const otherLocaleText = currentLocale === 'en' ? 'Español' : 'English';
-
-// Get the current path without locale prefix
-const currentPath = Astro.url.pathname.replace(/^\/(en|es)\//, '/');
-const switchPath = otherLocale === 'en' ? currentPath : `/${otherLocale}${currentPath}`;
+import { languages } from '../i18n/ui';
 ---
-
-<div class="relative inline-block text-left">
-  <button id="language-btn" type="button" class="inline-flex items-center justify-center px-3 py-1.5 text-sm font-medium text-primary-950 bg-white/20 backdrop-blur-sm rounded-full border border-primary-200/30 hover:bg-white/30 transition-all duration-300">
-    <span class="w-5 h-5 mr-1.5 text-primary-800">
-      {currentLocale === 'en' ? '🇺🇸' : '🇪🇸'}
-    </span>
-    {currentLocale.toUpperCase()}
-    <svg class="w-4 h-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-    </svg>
-  </button>
-
-  <div id="language-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-    <div class="py-1">
-      <a href={switchPath} class="flex items-center px-4 py-2 text-sm text-primary-900 hover:bg-primary-50">
-        <span class="w-5 h-5 mr-2">
-          {otherLocale === 'en' ? '🇺🇸' : '🇪🇸'}
-        </span>
-        {otherLocaleText}
-      </a>
-    </div>
-  </div>
-</div>
-
-<script>
-  const button = document.getElementById('language-btn');
-  const dropdown = document.getElementById('language-dropdown');
-
-  if (button && dropdown) {
-    button.addEventListener('click', () => {
-      dropdown.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!button.contains(event.target as Node)) {
-        dropdown.classList.add('hidden');
-      }
-    });
-  }
-</script>
+<ul>
+  {Object.entries(languages).map(([lang, label]) => (
+    <li>
+      <a href={`/${lang}/`}>{label}</a>
+    </li>
+  ))}
+</ul>
