@@ -3,7 +3,7 @@ export const languages = {
     es: 'Español',
 };
 
-export const defaultLang = 'en';
+export const defaultLang = 'es';
 
 export const ui = {
     en: {
@@ -20,7 +20,8 @@ export const ui = {
         'nav.about': 'About',
         'nav.gallery': 'Gallery',
         'nav.services': 'Services',
-        'nav.contact': 'Contact'
+        'nav.contact': 'Contact',
+        'nav.language': 'Language'
     },
     es: {
         'hero.title': 'Creaciones Artesanales de Pasteles',
@@ -36,6 +37,7 @@ export const ui = {
         'nav.about': 'Acerca de',
         'nav.gallery': 'Galería',
         'nav.services': 'Servicios',
-        'nav.contact': 'Contacto'
+        'nav.contact': 'Contacto',
+        'nav.language': 'Idioma'
     },
 } as const;

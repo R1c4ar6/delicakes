@@ -1,7 +1,7 @@
 ---
-import Navbar from '../components/Navbar.astro';
-import { getLangFromUrl } from '../i18n/utils';
-import '../styles/global.css';
+import Navbar from "../components/Navbar.astro";
+import { getLangFromUrl } from "../i18n/utils";
+import "../styles/global.css";
 
 const lang = getLangFromUrl(Astro.url);
 ---
@@ -14,19 +14,32 @@ const lang = getLangFromUrl(Astro.url);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Delicakes</title>
-    <meta name="description" content="Handcrafted, artisanal cakes for weddings, birthdays, and special events. Custom cake designs made with passion and creativity.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+		<meta
+			name="description"
+			content="Handcrafted, artisanal cakes for weddings, birthdays, and special events. Custom cake designs made with passion and creativity."
+		/>
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 
-	<body class="bg-white font-sans min-h-screen">
-    <Navbar />
+	<body class="bg-white font-sans">
+		<header>
+			<Navbar />
+		</header>
 		<slot />
-	</body>
 
+		<!-- FlowBite -->
+		<script
+			is:inline
+			src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"
+		></script>
+	</body>
 </html>
 
 <style>
@@ -35,15 +48,15 @@ const lang = getLangFromUrl(Astro.url);
 		margin: 0;
 		width: 100%;
 		height: 100%;
-    scroll-behavior: smooth;
+		scroll-behavior: smooth;
 	}
-  
-  /* Add animation delay utility classes */
-  .animation-delay-1000 {
-    animation-delay: 1000ms;
-  }
-  
-  .animation-delay-2000 {
-    animation-delay: 2000ms;
-  }
+
+	/* Add animation delay utility classes */
+	.animation-delay-1000 {
+		animation-delay: 1000ms;
+	}
+
+	.animation-delay-2000 {
+		animation-delay: 2000ms;
+	}
 </style>

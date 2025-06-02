@@ -1,0 +1,57 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const cakes = [
+  { id: 1, name: "Chocolate Fudge", category: "chocolate", image: "/src/assets/cakes/american-heritage-chocolate-vdx5hPQhXFk-unsplash.jpg" },
+  { id: 2, name: "Vanilla Dream", category: "classic", image: "/src/assets/cakes/caitlyn-de-wild-z5iSgwiEz6w-unsplash.jpg" },
+  { id: 3, name: "Red Velvet", category: "specialty", image: "/src/assets/cakes/dade-j-EtID5_V4hlY-unsplash.jpg" },
+  { id: 4, name: "Lemon Drizzle", category: "fruit", image: "/src/assets/cakes/david-holifield-kPxsqUGneXQ-unsplash.jpg" },
+  { id: 5, name: "Carrot Cake", category: "specialty", image: "/src/assets/cakes/deva-williamson-Kppw90QC_aE-unsplash.jpg" },
+  { id: 6, name: "Strawberry Shortcake", category: "fruit", image: "/src/assets/cakes/niklas-nosber-59g9Em-WLkA-unsplash.jpg" },
+  { id: 7, name: "Cookies & Cream", category: "chocolate", image: "/src/assets/cakes/umesh-soni-LDnmyOaA-ew-unsplash.jpg" },
+  { id: 8, name: "Tiramisu", category: "specialty", image: "/src/assets/cakes/vladimir-poljakovic-h7oxYiDnQx8-unsplash.jpg" },
+];
+
+
+---
+
+<section id="gallery-section" class="container mx-auto px-4 py-12">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-amber-800">Our Sweet Creations</h2>
+  <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+    Browse through our delicious selection of handcrafted cakes made with love and premium ingredients
+  </p>
+
+  <!-- Gallery Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    {cakes.map((cake) => (
+      <div class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <!-- Cake Image -->
+        <img 
+          src={cake.image} 
+          alt={cake.name}
+          width="400"
+          height="500"
+          class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div class="absolute bottom-0 left-0 p-6 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 class="text-xl font-bold">{cake.name}</h3>
+            <p class="text-amber-200 font-medium">{cake.category}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- View More Button -->
+  <div class="text-center mt-12">
+    <button class="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300">
+      View Full Menu
+    </button>
+  </div>
+</>
