@@ -1,0 +1,128 @@
+---
+import LanguageSelector from "./LanguageSelector.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+// Get current language and translations
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Get the current year for the copyright notice
+const currentYear = new Date().getFullYear();
+
+// Define navigation links for the footer, using the same translation keys as the header
+const quickLinks = [
+  { href: `/${lang}/`, text: t("nav.home") },
+  { href: `/${lang}/about`, text: t("nav.about") },
+  { href: `/${lang}/gallery`, text: t("nav.gallery") },
+  { href: `/${lang}/services`, text: t("nav.services") },
+  { href: `/${lang}/contact`, text: t("nav.contact") },
+];
+
+// Define legal links (you'll need to add these translation keys if they don't exist)
+const legalLinks = [
+  { href: `/${lang}/privacy-policy`, text: t("footer.privacy") || "Privacy Policy" },
+  { href: `/${lang}/terms`, text: t("footer.terms") || "Terms of Service" },
+];
+---
+
+<footer class="w-full bg-gray-50 border-t border-gray-200 shadow-sm">
+  <div class="max-w-screen-xl mx-auto px-6 py-10 md:py-16">
+    <!-- Grid container for footer sections -->
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+
+      <!-- Section 1: Brand Info -->
+      <div class="flex flex-col">
+        <a href={`/${lang}/`} class="flex items-center space-x-3 rtl:space-x-reverse mb-4">
+          <img src="/public/delicakes_logo.png" alt="Delicakes Logo" class="rounded-full size-12">
+          <span class="font-serif text-2xl font-bold text-gray-800">Delicakes</span>
+        </a>
+        <p class="text-sm text-gray-600 mb-6">
+          <!-- Add a new translation key for a short tagline or use a fallback -->
+          {t('footer.tagline') || 'Crafting delicious memories, one cake at a time.'}
+        </p>
+        
+      </div>
+
+      <!-- Section 2: Quick Links (Navigation) -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          {t('footer.quick_links') || 'Quick Links'}
+        </h3>
+        <ul class="space-y-2">
+          {quickLinks.map(link => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-gray-600 hover:text-amber-600 transition-colors duration-200 relative group"
+              >
+                {link.text}
+                <!-- Reusing the hover effect from the navbar -->
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Section 3: Legal & Info -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          {t('footer.legal_title') || 'Information'}
+        </h3>
+        <ul class="space-y-2">
+          {legalLinks.map(link => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-gray-600 hover:text-amber-600 transition-colors duration-200 relative group"
+              >
+                {link.text}
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-600 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Section 4: Contact & Social Media -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          {t('nav.contact') || 'Contact Us'}
+        </h3>
+        <p class="text-sm text-gray-600 mb-2">
+          <!-- Add translation keys or use fallback -->
+          {t('footer.address') || '123 Cake Street, Sweetville, CA 12345'}
+        </p>
+        <p class="text-sm text-gray-600 mb-4">
+          <a href="mailto:info@delicakes.com" class="hover:text-amber-600 transition-colors">
+            {t('footer.email') || 'info@delicakes.com'}
+          </a>
+        </p>
+
+        <!-- Social Media Icons -->
+        <div class="flex space-x-4 mt-4">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-amber-600 transition-colors duration-200">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-gray-500 hover:text-amber-600 transition-colors duration-200">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-gray-500 hover:text-amber-600 transition-colors duration-200">
+            
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar: Copyright -->
+    <div class="mt-10 pt-6 border-t border-gray-200 text-center">
+      <p class="text-sm text-gray-500">
+        © {currentYear} Delicakes. {t('footer.rights_reserved') || 'All rights reserved.'}
+      </p>
+    </div>
+  </div>
+</footer>

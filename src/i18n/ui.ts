@@ -21,7 +21,20 @@ export const ui = {
         'nav.gallery': 'Gallery',
         'nav.services': 'Services',
         'nav.contact': 'Contact',
-        'nav.language': 'Language'
+        'nav.language': 'Language',
+
+        'galleryPreview.title': 'Our Sweet Creations',
+        'galleryPreview.description': 'Browse through our delicious selection of handcrafted cakes made with love and premium ingredients',
+
+        'footer.quick_links': 'Quick Links',
+        'footer.legal_title': 'Information',
+        'footer.privacy': 'Privacy Policy',
+        'footer.terms': 'Terms of Service',
+        'footer.tagline': 'Crafting delicious memories, one cake at a time.',
+        'footer.address': '123 Cake Street, Sweetville, CA 12345',
+        'footer.email': 'info@delicakes.com',
+        'footer.rights_reserved': 'All rights reserved.',
+
     },
     es: {
         'hero.title': 'Creaciones Artesanales de Pasteles',
@@ -38,6 +51,18 @@ export const ui = {
         'nav.gallery': 'Galería',
         'nav.services': 'Servicios',
         'nav.contact': 'Contacto',
-        'nav.language': 'Idioma'
+        'nav.language': 'Idioma',
+
+        'galleryPreview.title': 'Nuestros Deliciosos Pasteles',
+        'galleryPreview.description': 'Explora nuestra selección de pasteles artesanales hechos con amor y ingredientes premium',
+
+        'footer.quick_links': 'Enlaces Rápidos',
+        'footer.legal_title': 'Información',
+        'footer.privacy': 'Política de Privacidad',
+        'footer.terms': 'Términos de Servicio',
+        'footer.tagline': 'Creando recuerdos deliciosos, un pastel a la vez.',
+        'footer.address': 'Calle Pastel 123, Sweetville, CA 12345',
+        'footer.email': 'info@delicakes.com',
+        'footer.rights_reserved': 'Todos los derechos reservados.',
     },
 } as const;

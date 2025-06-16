@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -19,9 +20,9 @@ const cakes = [
 ---
 
 <section id="gallery-section" class="container mx-auto px-4 py-12">
-  <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-amber-800">Our Sweet Creations</h2>
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-amber-800">{t("galleryPreview.title")}</h2>
   <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-    Browse through our delicious selection of handcrafted cakes made with love and premium ingredients
+    {t("galleryPreview.description")}
   </p>
 
   <!-- Gallery Grid -->
@@ -29,7 +30,7 @@ const cakes = [
     {cakes.map((cake) => (
       <div class="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
         <!-- Cake Image -->
-        <img 
+        <Image 
           src={cake.image} 
           alt={cake.name}
           width="400"
