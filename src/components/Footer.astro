@@ -1,6 +1,6 @@
 ---
-import LanguageSelector from "./LanguageSelector.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { Image } from "astro:assets";
 
 // Get current language and translations
 const lang = getLangFromUrl(Astro.url);
@@ -18,7 +18,7 @@ const quickLinks = [
   { href: `/${lang}/contact`, text: t("nav.contact") },
 ];
 
-// Define legal links (you'll need to add these translation keys if they don't exist)
+// Define legal links
 const legalLinks = [
   { href: `/${lang}/privacy-policy`, text: t("footer.privacy") || "Privacy Policy" },
   { href: `/${lang}/terms`, text: t("footer.terms") || "Terms of Service" },
@@ -33,11 +33,17 @@ const legalLinks = [
       <!-- Section 1: Brand Info -->
       <div class="flex flex-col">
         <a href={`/${lang}/`} class="flex items-center space-x-3 rtl:space-x-reverse mb-4">
-          <img src="/delicakes_logo.png" alt="Delicakes Logo" class="rounded-full size-12">
+          <Image 
+          src="/delicakes_logo.png" 
+          alt="Delicakes Logo" 
+          width="60" 
+          height="60" 
+          class="rounded-full" 
+          loading="eager">
           <span class="font-serif text-2xl font-bold text-gray-800">Delicakes</span>
+          </Image>
         </a>
         <p class="text-sm text-gray-600 mb-6">
-          <!-- Add a new translation key for a short tagline or use a fallback -->
           {t('footer.tagline') || 'Crafting delicious memories, one cake at a time.'}
         </p>
         

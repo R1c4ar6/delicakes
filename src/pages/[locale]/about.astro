@@ -1,0 +1,182 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+    return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+---
+
+<Layout>
+    <section class="container mx-auto px-4 py-12 md:py-24 md:px-8">
+        <!-- Hero Section with Subtle Background -->
+        <div class="mb-16 md:mb-24 text-center">
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-amber-800 leading-tight"
+                aria-label={t("about.title")}
+            >
+                {t("about.title")}
+            </h1>
+
+            <!-- Decorative divider -->
+            <div class="w-24 h-1 bg-amber-600 mx-auto mb-8"></div>
+
+            <p
+                class="text-lg md:text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed"
+            >
+                {t("about.intro")}
+            </p>
+        </div>
+
+        <!-- Our Story Section -->
+        <div class="mb-20 md:mb-28">
+            <div
+                class="max-w-5xl mx-auto bg-white rounded-xl shadow-sm p-8 md:p-10"
+            >
+                <h2
+                    class="text-2xl md:text-3xl font-semibold text-amber-800 mb-6 text-center md:text-left"
+                >
+                    {t("about.story_title")}
+                </h2>
+                <div class="h-0.5 w-16 bg-amber-500 mb-8 mx-auto md:mx-0"></div>
+                <p class="text-gray-700 leading-relaxed md:text-lg">
+                    {t("about.story_content")}
+                </p>
+            </div>
+        </div>
+
+        <!-- Our Values Section -->
+        <div class="mb-20 md:mb-28">
+            <h2
+                class="text-2xl md:text-3xl font-semibold text-amber-800 mb-12 text-center"
+            >
+                {t("about.values_title")}
+            </h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            >
+                <!-- Value 1 -->
+                <div
+                    class="bg-white text-center p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-amber-50"
+                >
+                    <div class="text-amber-600 text-3xl mb-4">🍃</div>
+                    <h3 class="font-bold text-xl text-amber-800 mb-4">
+                        {t("about.values_fresh_title")}
+                    </h3>
+                    <p class="text-gray-700">
+                        {t("about.values_fresh_content")}
+                    </p>
+                </div>
+
+                <!-- Value 2 -->
+                <div
+                    class="bg-white text-center p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-amber-50"
+                >
+                    <div class="text-amber-600 text-3xl mb-4">❤️</div>
+                    <h3 class="font-bold text-xl text-amber-800 mb-4">
+                        {t("about.values_craft_title")}
+                    </h3>
+                    <p class="text-gray-700">
+                        {t("about.values_craft_content")}
+                    </p>
+                </div>
+
+                <!-- Value 3 -->
+                <div
+                    class="bg-white text-center p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-amber-50"
+                >
+                    <div class="text-amber-600 text-3xl mb-4">👥</div>
+                    <h3 class="font-bold text-xl text-amber-800 mb-4">
+                        {t("about.values_community_title")}
+                    </h3>
+                    <p class="text-gray-700">
+                        {t("about.values_community_content")}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meet the Team Section -->
+        <div class="mb-20 md:mb-28">
+            <h2
+                class="text-2xl md:text-3xl font-semibold text-amber-800 mb-12 text-center"
+            >
+                {t("about.team_title")}
+            </h2>
+            <div
+                class="flex flex-col md:flex-row gap-12 justify-center items-center max-w-5xl mx-auto"
+            >
+                <!-- Team Member 1 -->
+                <div
+                    class="text-center bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow w-full max-w-xs"
+                >
+                    <div class="relative mb-6">
+                        <img
+                            src="/src/assets/emediong-umoh-4asjXwpq8JA-unsplash.jpg"
+                            alt={t("about.team_member_alt")}
+                            class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-amber-100"
+                        />
+                        <div
+                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-medium"
+                        >
+                            {t("about.team_member1_role")}
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg text-amber-800 mb-1">
+                        {t("about.team_member1_name")}
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        {t("about.team_member1_bio")}
+                    </p>
+                    <!-- <a href="#" class="text-amber-600 text-sm font-medium inline-flex items-center">
+            View profile <ChevronRight class="w-4 h-4 ml-1" />
+          </a> -->
+                </div>
+
+                <!-- Team Member 2 -->
+                <div
+                    class="text-center bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow w-full max-w-xs"
+                >
+                    <div class="relative mb-6">
+                        <img
+                            src="/src/assets/travis-grossen-AXDTTuh-0UI-unsplash.jpg"
+                            alt={t("about.team_member_alt")}
+                            class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-amber-100"
+                        />
+                        <div
+                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-medium"
+                        >
+                            {t("about.team_member2_role")}
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg text-amber-800 mb-1">
+                        {t("about.team_member2_name")}
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        {t("about.team_member2_bio")}
+                    </p>
+                    <!-- <a href="#" class="text-amber-600 text-sm font-medium inline-flex items-center">
+            View profile <ChevronRight class="w-4 h-4 ml-1" />
+          </a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="text-center border-t border-amber-100 pt-12 md:pt-16">
+            <div class="max-w-3xl mx-auto">
+                <h3
+                    class="text-xl md:text-2xl font-semibold text-amber-800 mb-6"
+                >
+                    {t("about.promise_title")}
+                </h3>
+                <p class="text-gray-700 mb-8 md:text-lg">
+                    {t("about.promise")}
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>
