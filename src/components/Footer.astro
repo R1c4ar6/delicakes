@@ -2,19 +2,17 @@
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { Image } from "astro:assets";
 
-// Get current language and translations
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Get the current year for the copyright notice
+// Get the current year 
 const currentYear = new Date().getFullYear();
 
-// Define navigation links for the footer, using the same translation keys as the header
 const quickLinks = [
   { href: `/${lang}/`, text: t("nav.home") },
   { href: `/${lang}/about`, text: t("nav.about") },
   { href: `/${lang}/gallery`, text: t("nav.gallery") },
-  { href: `/${lang}/services`, text: t("nav.services") },
+  // { href: `/${lang}/services`, text: t("nav.services") },
   { href: `/${lang}/contact`, text: t("nav.contact") },
 ];
 

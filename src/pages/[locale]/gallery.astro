@@ -1,0 +1,138 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { Image } from "astro:assets";
+
+import chocolateFudgeImg from "../../assets/cakes/american-heritage-chocolate-vdx5hPQhXFk-unsplash.jpg";
+import vanillaDreamImg from "../../assets/cakes/caitlyn-de-wild-z5iSgwiEz6w-unsplash.jpg";
+import redVelvetImg from "../../assets/cakes/dade-j-EtID5_V4hlY-unsplash.jpg";
+import lemonDrizzleImg from "../../assets/cakes/david-holifield-kPxsqUGneXQ-unsplash.jpg";
+import carrotCakeImg from "../../assets/cakes/deva-williamson-Kppw90QC_aE-unsplash.jpg";
+import strawberryShortcakeImg from "../../assets/cakes/niklas-nosber-59g9Em-WLkA-unsplash.jpg";
+import cookiesCreamImg from "../../assets/cakes/umesh-soni-LDnmyOaA-ew-unsplash.jpg";
+import tiramisuImg from "../../assets/cakes/vladimir-poljakovic-h7oxYiDnQx8-unsplash.jpg";
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export async function getStaticPaths() {
+    return [{ params: { locale: "en" } }, { params: { locale: "es" } }];
+}
+
+const categoriesMap = {
+  chocolate: t("cake.chocolateCategory"),
+  fruit: t("cake.fruitCategory"),
+  specialty: t("cake.specialtyCategory"),
+  classic: t("cake.classicCategory")
+};
+
+const cakes = [
+  { id: 1, name: "Chocolate Fudge", category: categoriesMap.chocolate, image: chocolateFudgeImg },
+  { id: 2, name: "Vanilla Dream", category: categoriesMap.classic, image: vanillaDreamImg },
+  { id: 3, name: "Red Velvet", category: categoriesMap.specialty, image: redVelvetImg },
+  { id: 4, name: "Lemon Drizzle", category: categoriesMap.fruit, image: lemonDrizzleImg },
+  { id: 5, name: "Carrot Cake", category: categoriesMap.specialty, image: carrotCakeImg },
+  { id: 6, name: "Strawberry Shortcake", category: categoriesMap.fruit, image: strawberryShortcakeImg },
+  { id: 7, name: "Cookies & Cream", category: categoriesMap.chocolate, image: cookiesCreamImg },
+  { id: 8, name: "Tiramisu", category: categoriesMap.specialty, image: tiramisuImg }
+];
+
+const categories = ["all", ...Object.values(categoriesMap)];
+---
+
+<Layout title="Gallery">
+
+<!-- Gallery Page Container -->
+<section id="gallery-page" class="container mx-auto px-4 py-32">
+  <!-- Page Title & Description -->
+  <h1 class="text-4xl md:text-5xl font-bold text-center mb-4 text-amber-800">
+    {t("gallery.title")}
+  </h1>
+  <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+    {t("gallery.description")}
+  </p>
+
+  <!-- Category Filter Bar -->
+  <div class="flex flex-wrap justify-center gap-3 mb-10">
+    {categories.map((cat) => (
+      <button 
+        class="px-5 py-2 rounded-full bg-amber-200 text-amber-800 font-medium hover:bg-amber-300 transition-colors duration-300 {cat === 'all' ? 'bg-amber-600 hover:bg-amber-700' : ''}"
+        data-category={cat}
+        aria-label={cat === 'all' ? t("gallery.filterAllAria") : `${t("gallery.filter")} ${cat.charAt(0).toUpperCase() + cat.slice(1)}`}
+      >
+        {cat === 'all' ? t("gallery.filterAll") : cat.charAt(0).toUpperCase() + cat.slice(1)}
+      </button>
+    ))}
+  </div>
+
+  <!-- Cakes Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    {cakes.map((cake) => (
+      <div 
+        class="cake-item relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+        data-category={cake.category}
+      >
+        <Image 
+          src={cake.image} 
+          alt={cake.name}
+          width="600" 
+          height="700"
+          class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+
+        <!-- Hover Overlay (shows name + category) -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div class="absolute bottom-0 left-0 p-6 text-white translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
+            <h3 class="text-xl font-bold">{cake.name}</h3>
+            <p class="text-amber-200 font-medium mt-1">{cake.category.charAt(0).toUpperCase() + cake.category.slice(1)}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Back to Home Button -->
+  <div class="text-center mt-12">
+    <a href={`/${lang}/`} class="inline-block">
+      <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-full transition-colors duration-300">
+        {t("gallery.backToHome")}
+      </button>
+    </a>
+  </div>
+</section>
+</Layout>
+
+<!-- Client-Side Filtering Script -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get all filter buttons and cake items
+    const filterButtons = document.querySelectorAll('[data-category]');
+    const cakeItems = document.querySelectorAll('.cake-item');
+
+    // Add click behavior to filter buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update "active" button styling
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-amber-600', 'text-white', 'hover:bg-amber-700');
+          btn.classList.add('bg-amber-100', 'text-amber-800', 'hover:bg-amber-200');
+        });
+        button.classList.remove('bg-amber-100', 'text-amber-800', 'hover:bg-amber-200');
+        button.classList.add('bg-amber-600', 'text-white', 'hover:bg-amber-700');
+
+        // Get the selected category
+        const selectedCategory = button.dataset.category;
+
+        // Show/hide cake items based on category
+        cakeItems.forEach(item => {
+          if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
